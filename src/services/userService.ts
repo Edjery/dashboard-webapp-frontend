@@ -62,6 +62,33 @@ class UserService {
     }
   }
 
+  async authenticate(token: string) {
+    try {
+      const response = await axiosInstance.post("auth/authenticate_user/", {
+        token: token,
+      });
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response && error.response.data) {
+          for (const key in error.response.data) {
+            if (error.response.data.hasOwnProperty(key)) {
+              const errorMessage = `${key
+                .toString()
+                .toUpperCase()}: ${error.response.data[key].toString()}`;
+              popUpError(errorMessage);
+            }
+          }
+        } else {
+          console.error("Error:", error.message);
+        }
+      } else {
+        console.error("Error in updating data:", error);
+        throw error;
+      }
+    }
+  }
+
   async get(id: number | undefined): Promise<IUser> {
     const response = await axiosInstance.get(`${API_ENDPOINT}${id}/`);
     const data: IUser = response.data;

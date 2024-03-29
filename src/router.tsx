@@ -5,6 +5,7 @@ import Settings from "./pages/Settings";
 import AuthLayout from "./pages/auth/AuthLayout";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/login";
+import Authenticate from "./pages/auth/Authenticate";
 
 const router = createBrowserRouter([
   { path: "", element: <Dashboard /> },
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
     children: [
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "auth", element: <Authenticate /> },
     ],
   },
 ]);
