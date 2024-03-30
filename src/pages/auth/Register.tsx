@@ -1,17 +1,8 @@
-import {
-  Box,
-  FormControl,
-  Link,
-  Stack,
-  TextField,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { FormControl, Link, Stack, TextField, Typography } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import LoadingButton from "../../components/common/LoadingButton";
 import registerSchema from "../../schemas/registerSchema";
 import userService from "../../services/userService";
