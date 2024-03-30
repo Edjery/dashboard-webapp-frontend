@@ -5,14 +5,18 @@ import IAccountValues from "../pages/auth/interface/IRegisterValues";
 import axiosInstance from "./apiClient";
 import IUser from "./interface/IUser";
 
-const API_ENDPOINT = "users/";
+const USER_API_ENDPOINT = "users/";
+const LOGIN_API_ENDPOINT = "login/";
+const AUTH_USER_API_ENDPOINT = "auth/authenticate_user/";
+const AUTH_STATUS_API_ENDPOINT = "authenticated_users/";
+const AUTH_ID_ENDPOINT = "auth_user/";
 
 class UserService {
   constructor() {}
 
   async register(newUser: IAccountValues) {
     try {
-      const response = await axiosInstance.post(API_ENDPOINT, newUser, {
+      const response = await axiosInstance.post(USER_API_ENDPOINT, newUser, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response;
@@ -39,7 +43,7 @@ class UserService {
 
   async login(user: ILoginValues) {
     try {
-      const response = await axiosInstance.post("login/", user);
+      const response = await axiosInstance.post(LOGIN_API_ENDPOINT, user);
       return response;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -64,7 +68,7 @@ class UserService {
 
   async authenticate(token: string) {
     try {
-      const response = await axiosInstance.post("auth/authenticate_user/", {
+      const response = await axiosInstance.post(AUTH_USER_API_ENDPOINT, {
         token: token,
       });
       return response;
@@ -90,11 +94,52 @@ class UserService {
   }
 
   async get(id: number | undefined): Promise<IUser> {
-    const response = await axiosInstance.get(`${API_ENDPOINT}${id}/`);
+    const response = await axiosInstance.get(`${USER_API_ENDPOINT}${id}/`);
     const data: IUser = response.data;
     return data;
   }
-}
 
+  async updateAuthStatus(id: number | undefined) {
+    try {
+      const responseFindUser = await axiosInstance.get(
+        `${AUTH_ID_ENDPOINT}${id}/`
+      );
+
+      const authId = responseFindUser.data.user_id;
+
+      const response = await axiosInstance.patch(
+        `${AUTH_STATUS_API_ENDPOINT}${authId}/`,
+        {
+          status: !responseFindUser.data.status,
+        }
+      );
+      return response;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 404) {
+          const response = await axiosInstance.post(AUTH_STATUS_API_ENDPOINT, {
+            user: id,
+            status: true,
+          });
+          return response;
+        }
+      }
+    }
+  }
+
+  async getAuthStatus(id: number | undefined) {
+    const responseFindUser = await axiosInstance.get(
+      `${AUTH_ID_ENDPOINT}${id}/`
+    );
+
+    const authId = responseFindUser.data.user_id;
+
+    const response = await axiosInstance.get(
+      `${AUTH_STATUS_API_ENDPOINT}${authId}/`
+    );
+    const data: boolean = response.data.status;
+    return data;
+  }
+}
 const userService = new UserService();
 export default userService;
