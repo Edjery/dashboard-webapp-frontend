@@ -1,7 +1,8 @@
-import { Button, CircularProgress, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import { useLocation, useNavigate } from "react-router-dom";
+import LoadingButtonHandle from "../../components/common/LoadingButtonHandle";
 import userService from "../../services/userService";
 import IAuthUser from "./interface/IAuthUser";
 
@@ -63,20 +64,12 @@ const Authenticate = () => {
           <Typography variant="h6" textAlign="center">
             Click the button to continue!
           </Typography>
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={submitting}
+          <LoadingButtonHandle
+            isSubmitting={submitting}
             onClick={handleSubmit}
-          >
-            {submitting ? (
-              <CircularProgress color="primary" size={30} sx={{ padding: 1 }} />
-            ) : (
-              <Typography fontSize={20} sx={{ padding: 1 }}>
-                Login!
-              </Typography>
-            )}
-          </Button>
+            buttonText="Login!"
+            color="primary"
+          />
         </>
       ) : (
         <>
@@ -86,20 +79,12 @@ const Authenticate = () => {
           <Typography variant="h6" textAlign="center">
             Click the button to continue!
           </Typography>
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={submitting}
+          <LoadingButtonHandle
+            isSubmitting={submitting}
             onClick={handleReturn}
-          >
-            {submitting ? (
-              <CircularProgress color="primary" size={30} sx={{ padding: 1 }} />
-            ) : (
-              <Typography fontSize={20} sx={{ padding: 1 }}>
-                Continue
-              </Typography>
-            )}
-          </Button>
+            buttonText="Continue"
+            color="primary"
+          />
         </>
       )}
     </Stack>
