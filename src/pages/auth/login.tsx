@@ -33,9 +33,13 @@ const Login = () => {
     setSubmitting(true);
     const response = await userService.login(values);
     if (response) {
-      handleSignIn(response.data.token, response.data.userData);
-      navigate("/");
-      console.log("login success");
+      if (response.data.mode === "signin") {
+        handleSignIn(response.data.token, response.data.userData);
+        navigate("/");
+        console.log("login success");
+      } else if (response.data.mode === "auth") {
+        window.location.href = response.data.redirect_url;
+      }
     }
     setSubmitting(false);
   };
