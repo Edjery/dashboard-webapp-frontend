@@ -11,28 +11,28 @@ const TermsDialog = ({ open, onClose }: Props) => {
       <DialogTitle>Terms and Conditions</DialogTitle>
       <DialogContent dividers>
         <Typography variant="body1" gutterBottom>
-          Welcome to True Visage!
+          Welcome to Dashboard Website!
         </Typography>
         <Typography variant="body1" gutterBottom>
-          These terms and conditions govern the use of the True Visage API and related services provided by Self-Employed. By accessing or using our API, you agree to comply with these terms. If you do not agree, please do not use our API.
+          These terms and conditions govern the use of the Dashboard Website API and related services provided by Self-Employed. By accessing or using our API, you agree to comply with these terms. If you do not agree, please do not use our API.
         </Typography>
         <Typography variant="body1" gutterBottom>
           <strong>Terminology</strong> In these terms, "Client," "You," and "Your" refer to you, the individual or entity using our API. "Company," "We," "Our," and "Us" refer to Self-Employed. "Parties" refer to both you and us.
         </Typography>
         <Typography variant="body1" gutterBottom>
-          <strong>License</strong> Self-Employed and its licensors own all intellectual property rights for the materials on True Visage. You may access these materials for personal use, subject to the restrictions in these terms.
+          <strong>License</strong> Self-Employed and its licensors own all intellectual property rights for the materials on Dashboard Website. You may access these materials for personal use, subject to the restrictions in these terms.
         </Typography>
         <Typography variant="body1" gutterBottom>
           <strong>Restrictions</strong> You must not:
         </Typography>
         <ul>
-          <li>Republish material from True Visage</li>
-          <li>Sell, rent, or sub-license material from True Visage</li>
-          <li>Reproduce, duplicate, or copy material from True Visage</li>
-          <li>Redistribute content from True Visage</li>
+          <li>Republish material from Dashboard Website</li>
+          <li>Sell, rent, or sub-license material from Dashboard Website</li>
+          <li>Reproduce, duplicate, or copy material from Dashboard Website</li>
+          <li>Redistribute content from Dashboard Website</li>
         </ul>
         <Typography variant="body1" gutterBottom>
-          <strong>User Consent and Data Requests</strong> By using the True Visage API, you acknowledge and agree that:
+          <strong>User Consent and Data Requests</strong> By using the Dashboard Website API, you acknowledge and agree that:
         </Typography>
         <ul>
           <li>You may be requested to provide data, including images, for processing.</li>
@@ -40,7 +40,7 @@ const TermsDialog = ({ open, onClose }: Props) => {
           <li>You will not use the API for any activity that violates any person's privacy or infringes on any intellectual property rights.</li>
         </ul>
         <Typography variant="body1" gutterBottom>
-          <strong>Comments and User-Generated Content</strong> Users may post comments and share information on True Visage. We do not filter, edit, or review comments before they appear on the site. Comments reflect the views of their authors, not Self-Employed. We are not liable for comments' content or any resulting liability.
+          <strong>Comments and User-Generated Content</strong> Users may post comments and share information on Dashboard Website. We do not filter, edit, or review comments before they appear on the site. Comments reflect the views of their authors, not Self-Employed. We are not liable for comments' content or any resulting liability.
         </Typography>
         <Typography variant="body1" gutterBottom>
           <strong>Hyperlinking to Our Content</strong> The following organizations may link to our website without prior approval:
@@ -63,7 +63,7 @@ const TermsDialog = ({ open, onClose }: Props) => {
           <strong>Disclaimer</strong> We do not guarantee the accuracy or completeness of the information on this website. We exclude all representations, warranties, and conditions to the maximum extent permitted by law.
         </Typography>
         <Typography variant="body1" gutterBottom>
-          By using the True Visage API and services, you agree to these terms and conditions. If you have any questions, please contact us.
+          By using the Dashboard Website API and services, you agree to these terms and conditions. If you have any questions, please contact us.
         </Typography>
       </DialogContent>
       <DialogActions>
