@@ -1,11 +1,11 @@
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from "@mui/material";
 
-interface TermsDialogProps {
+interface Props {
   open: boolean;
   onClose: () => void;
 }
 
-const TermsDialog: React.FC<TermsDialogProps> = ({ open, onClose }) => {
+const TermsDialog = ({ open, onClose }: Props) => {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle>Terms and Conditions</DialogTitle>
