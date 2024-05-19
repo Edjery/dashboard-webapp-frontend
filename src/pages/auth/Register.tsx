@@ -1,9 +1,11 @@
-import { FormControl, Link, Stack, TextField, Typography } from "@mui/material";
+import { Checkbox, FormControl, FormControlLabel, Link, Stack, TextField, Typography } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import { useNavigate } from "react-router-dom";
+import TermsDialog from "../../components/TermsDialog";
 import LoadingButton from "../../components/common/LoadingButton";
+import popUpError from "../../helpers/popUpError";
 import registerSchema from "../../schemas/registerSchema";
 import userService from "../../services/userService";
 import IAuthUser from "./interface/IAuthUser";
@@ -11,6 +13,9 @@ import IRegisterValues from "./interface/IRegisterValues";
 
 const Register = () => {
   const [submitting, setSubmitting] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [termsOpen, setTermsOpen] = useState(false);
+
   const initialValues: IRegisterValues = {
     name: "",
     email: "",
@@ -52,7 +57,11 @@ const Register = () => {
         initialValues={initialValues}
         validationSchema={registerSchema}
         onSubmit={(values: IRegisterValues) => {
-          handleSubmit(values);
+          if (acceptTerms) {
+            handleSubmit(values);
+          } else {
+            popUpError("You need to agree to the terms and conditions to register")
+          }
         }}
       >
         {({ errors, touched }) => (
@@ -112,6 +121,25 @@ const Register = () => {
                   }
                 />
               </FormControl>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={acceptTerms}
+                    onChange={(e) => setAcceptTerms(e.target.checked)}
+                  />
+                }
+                label={
+                  <Typography>
+                    I agree to the{' '}
+                    <Link
+                      component="button"
+                      onClick={() => setTermsOpen(true)}
+                    >
+                      Terms and Conditions
+                    </Link>
+                  </Typography>
+                }
+              />
               <LoadingButton isSubmitting={submitting} buttonText="Register" />
             </Stack>
           </Form>
@@ -123,6 +151,8 @@ const Register = () => {
           Already have an account? Sign In!
         </Typography>
       </Link>
+
+      <TermsDialog open={termsOpen} onClose={() => setTermsOpen(false)} /><TermsDialog open={termsOpen} onClose={() => setTermsOpen(false)} />
     </>
   );
 };
