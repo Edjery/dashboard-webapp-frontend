@@ -5,7 +5,7 @@ import Settings from "./pages/Settings";
 import AuthError from "./pages/auth/AuthError";
 import AuthLayout from "./pages/auth/AuthLayout";
 import Authenticate from "./pages/auth/Authenticate";
-import Login from "./pages/auth/LoginPage";
+import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 
 const router = createBrowserRouter([
